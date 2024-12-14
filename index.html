@@ -42,9 +42,10 @@
             border-radius: 5px;
         }
         .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 100%;
+            padding: 1rem;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
         .book {
             display: flex;
@@ -53,7 +54,7 @@
             margin-bottom: 2rem;
         }
         .book img {
-            max-width: 150px;
+            max-width: 100%;
             border-radius: 5px;
         }
         .book-details {
@@ -62,6 +63,23 @@
         }
         .book-details h2 {
             margin: 0;
+            font-size: 1.5rem;
+        }
+        .book-details p {
+            font-size: 0.9rem;
+        }
+        .book-details a {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .book-details a:hover {
+            background: #555;
         }
         footer {
             background: #333;
@@ -70,23 +88,11 @@
             padding: 1rem 0;
             margin-top: 2rem;
         }
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            nav a {
-                margin: 0 10px;
-                font-size: 0.9rem;
-            }
-            .book img {
-                max-width: 100px;
-            }
-        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const sections = {
-                home: `<h2>Benvenuto!</h2><p>Ciao! Sono Richie Who, scrittore appassionato. Scopri il mio ultimo libro e il mio percorso come autore.</p><div class="book"><img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro" style="max-width:200px; margin-top:10px;"></div>`,
+                home: `<h2>Benvenuto!</h2><p>Ciao! Sono Richie Who, scrittore appassionato. Scopri il mio ultimo libro e il mio percorso come autore.</p><div class="book"><img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro"></div>`,
                 books: `<h2>Il Mio Libro</h2><div class="book"><img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro"><div class="book-details"><h2>Titolo del Libro</h2><p>Una breve descrizione del libro. Scopri la trama, i personaggi e l'ispirazione dietro questa storia unica.</p><a href="https://www.amazon.it/dp/B0DPTY8QZD" target="_blank">Acquista su Amazon</a></div></div>`,
                 about: `<h2>Chi Sono</h2><p>Mi chiamo Richie Who, e sono un autore con una passione per raccontare storie. La scrittura è la mia forma di espressione e un modo per connettermi con il mondo.</p>`,
                 contact: `<h2>Contattami</h2><p>Vuoi metterti in contatto? Scrivimi per domande, collaborazioni o semplicemente per condividere il tuo pensiero sul mio libro!</p><p>Email: <a href="mailto:richie.who@example.com">richie.who@example.com</a></p>`
@@ -121,7 +127,7 @@
     <h2>Benvenuto!</h2>
     <p>Ciao! Sono Richie Who, scrittore appassionato. Scopri il mio ultimo libro e il mio percorso come autore.</p>
     <div class="book">
-        <img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro" style="max-width:200px; margin-top:10px;">
+        <img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro">
     </div>
 </div>
 
