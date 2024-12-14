@@ -1,139 +1,346 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richie Who - Scrittore</title>
+    <title>Richie Who</title>
     <style>
+        /* Base Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212; /* Colore di sfondo scuro */
+            color: #E0E0E0; /* Colore del testo chiaro per una lettura migliore */
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
             line-height: 1.6;
+            overflow-x: hidden;
         }
+
         header {
-            background: #333;
-            color: #fff;
+            background-color: #1C1C1C; /* Sfondo header scuro */
             padding: 1rem 0;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 2px solid #BB86FC; /* Colore highlight */
         }
+
         header h1 {
-            margin: 0;
             font-size: 2.5rem;
+            color: #BB86FC; /* Colore titolo */
+            margin: 0;
+            padding: 0 2rem;
         }
+
         nav {
+            margin-top: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
             display: flex;
             justify-content: center;
-            background: #444;
-            padding: 0.5rem 0;
+            margin: 0;
+            padding: 0;
         }
-        nav a {
-            color: #fff;
-            margin: 0 15px;
+
+        nav ul li {
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #E0E0E0; /* Colore link */
             text-decoration: none;
-            font-size: 1rem;
-            padding: 0.5rem;
-            transition: background 0.3s;
+            font-weight: bold;
         }
-        nav a:hover {
-            background: #555;
-            border-radius: 5px;
+
+        nav ul li a:hover {
+            color: #BB86FC; /* Colore link hover */
         }
-        .container {
-            max-width: 100%;
-            padding: 1rem;
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            background-color: #121212; /* Sfondo tab content nero */
+            border-top: 1px solid #333333; /* Colore di separazione tab */
+            text-align: center;
+            max-width: 800px;
             margin: 0 auto;
-            box-sizing: border-box;
+            overflow: hidden; /* Nascondere contenuto fuori schermo */
+            transition: opacity 0.4s ease-in-out; /* Transizione di comparsa */
         }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+
         .book {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            margin: 2rem 0;
+            max-width: 600px;
+            background-color: #1C1C1C; /* Sfondo libro scuro */
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease-in-out; /* Velocità di zoom lenta */
+            position: relative; /* Aggiunta di posizione relativa per l'ombra */
+            overflow: hidden; /* Contenuto overflow in modo sicuro */
+            display: inline-block; /* Per centrare i libri */
+            vertical-align: middle; /* Centra verticalmente */
         }
+
         .book img {
             max-width: 100%;
-            border-radius: 5px;
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
         }
-        .book-details {
-            flex: 1;
-            min-width: 200px;
+
+        .book img:hover {
+            transform: scale(1.05); /* Effetto di zoom leggero con mouse over */
+            box-shadow: 0 0 10px rgba(200, 200, 200, 0.5); /* Ombra grigio chiaro esterna più leggera */
         }
-        .book-details h2 {
-            margin: 0;
-            font-size: 1.5rem;
+
+        .book img:active {
+            transform: scale(1.1); /* Effetto di zoom leggermente più grande quando cliccato */
         }
-        .book-details p {
-            font-size: 0.9rem;
-        }
-        .book-details a {
-            display: inline-block;
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            background: #333;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .book-details a:hover {
-            background: #555;
-        }
-        footer {
-            background: #333;
-            color: #fff;
+
+        .book-description {
             text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
+            color: #FFFFFF; /* Colore testo descrizioni libri su fondo scuro */
+        }
+
+        .book-description h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            color: #BB86FC; /* Colore titolo del libro */
+        }
+
+        .book-description p {
+            font-size: 1rem;
+            margin: 1rem 0;
+        }
+
+        .book a {
+            display: block;
+            color: #BB86FC; /* Colore link per acquistare il libro */
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .book a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background-color: #1C1C1C; /* Sfondo della form di contatto scuro */
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            border: 1px solid #333333;
+            border-radius: 5px;
+            background-color: #121212;
+            color: #E0E0E0;
+        }
+
+        .contact-form button {
+            background-color: #BB86FC; /* Colore bottone */
+            color: #121212;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .contact-form button:hover {
+            background-color: #9E66FC; /* Colore hover bottone */
+        }
+
+        footer {
+            background-color: #1C1C1C; /* Sfondo footer scuro */
+            padding: 1.5rem 0;
+            text-align: center;
+            color: #757575; /* Colore testo footer */
+            font-size: 0.9rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin-bottom: 1rem;
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
+            }
+
+            .book-description h3 {
+                font-size: 1.5rem;
+            }
+
+            .book-description p {
+                font-size: 0.9rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .contact-form input, .contact-form textarea {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Background Image for Home */
+        .home-background {
+            background-image: url('https://wallpapercave.com/wp/wp4817329.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Effetto fisso */
+            padding: 5rem 0;
+            position: relative;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = {
-                home: `<h2>Benvenuto!</h2><p>Ciao! Sono Richie Who, scrittore appassionato. Scopri il mio ultimo libro e il mio percorso come autore.</p><div class="book"><img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro"></div>`,
-                books: `<h2>Il Mio Libro</h2><div class="book"><img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro"><div class="book-details"><h2>Titolo del Libro</h2><p>Una breve descrizione del libro. Scopri la trama, i personaggi e l'ispirazione dietro questa storia unica.</p><a href="https://www.amazon.it/dp/B0DPTY8QZD" target="_blank">Acquista su Amazon</a></div></div>`,
-                about: `<h2>Chi Sono</h2><p>Mi chiamo Richie Who, e sono un autore con una passione per raccontare storie. La scrittura è la mia forma di espressione e un modo per connettermi con il mondo.</p>`,
-                contact: `<h2>Contattami</h2><p>Vuoi metterti in contatto? Scrivimi per domande, collaborazioni o semplicemente per condividere il tuo pensiero sul mio libro!</p><p>Email: <a href="mailto:richie.who@example.com">richie.who@example.com</a></p>`
-            };
-
-            const contentDiv = document.querySelector('.container');
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const sectionId = link.getAttribute('href').substring(1);
-                    contentDiv.innerHTML = sections[sectionId];
-                });
-            });
-        });
-    </script>
 </head>
 <body>
 
-<header>
-    <h1>Richie Who</h1>
-    <p>Scrittore e Autore</p>
-</header>
+    <!-- Header -->
+    <header>
+        <h1>Richie Who</h1>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0)" onclick="showTab('home')">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('libri')">Libri</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('chi-sono')">Chi sono</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('contatti')">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<nav>
-    <a href="#home">Home</a>
-    <a href="#books">Libri</a>
-    <a href="#about">Chi Sono</a>
-    <a href="#contact">Contatti</a>
-</nav>
+    <!-- Main content -->
+    <main>
+        <section id="home" class="tab-content active home-background">
+            <div class="welcome-message">
+                <h2>Benvenuto in Richie Who</h2>
+                <p>Scopri il mondo oscuro e affascinante di Richie Who, uno scrittore di origini italiane trasferitosi a Monaco di Baviera. In questo sito, esplorerai non solo i suoi libri, ma anche il processo creativo dietro le sue storie di paura e mistero.</p>
+                <p>Leggi di più su di lui nella sezione 'Chi sono' e immergiti nelle atmosfere inquietanti del suo ultimo libro 'L’Eco del Desiderio' nella sezione 'Libri'.</p>
+            </div>
+        </section>
 
-<div class="container">
-    <h2>Benvenuto!</h2>
-    <p>Ciao! Sono Richie Who, scrittore appassionato. Scopri il mio ultimo libro e il mio percorso come autore.</p>
-    <div class="book">
-        <img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro">
-    </div>
-</div>
+        <section id="libri" class="tab-content">
+            <h2>Libri</h2>
+            <div class="book">
+                <img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="L'Eco del Desiderio" class="book-image">
+                <div class="book-description">
+                    <h3>L'Eco del Desiderio</h3>
+                    <p>Un’eredità dimenticata, un’antica villa e un ciondolo che nasconde oscuri segreti. Quando Anna torna alla casa di famiglia per risolvere una questione di eredità, scopre molto di più: la verità sulla sua famiglia e la necessità di confrontarsi con le oscure verità che la villa di famiglia custodisce. Scoprendo un ciondolo appartenuto alla sua famiglia, Anna si trova catapultata in un viaggio per scoprire il vero potere dietro la leggenda di famiglia e i segreti celati nella villa. <a href="https://amzn.eu/d/8SG1HSr">Acquista ora</a></p>
+                </div>
+            </div>
 
-<footer>
-    <p>&copy; 2024 Richie Who. Tutti i diritti riservati.</p>
-</footer>
+            <div class="book">
+                <img src="https://media.istockphoto.com/id/1438760701/it/vettoriale/luomo-sale-le-scale-in-rovina-di-un-antico-tempio-viaggiatore-nella-tomba-viaggio-nel.jpg?s=1024x1024&w=is&k=20&c=ae07VYPdHZ05PZVEX3jQmO6Ya3aC2HDtU0RfVN67-VM=" alt="Ombre tra le Rovine" class="book-image">
+                <div class="book-description">
+                    <h3>Ombre tra le Rovine</h3>
+                    <p>Un archeologo trova indizi che rivelano la presenza di una città perduta sotto le rovine di un'antica civiltà. Ma quando scava troppo in profondità, scopre che le ombre che infestano le rovine sono reali... e mortali. Con l’aiuto di una guida esperta e le sue conoscenze, dovrà svelare un mistero millenario prima che la maledizione della città dimenticata lo prenda come prossimo obiettivo. <a href="https://amzn.eu/d/8SG1HSr">Acquista ora</a></p>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="https://i.ytimg.com/vi/h1miqLzgKp0/maxresdefault.jpg" alt="I Segreti della Foresta" class="book-image">
+                <div class="book-description">
+                    <h3>I Segreti della Foresta</h3>
+                    <p>In un villaggio remoto, una leggenda racconta di una foresta oscura che sussurra segreti a chi sa ascoltare. Quando un gruppo di amici decide di esplorarla, scoprono che ogni albero nasconde un racconto di terrore e che il passato del villaggio è intrecciato con un’antica maledizione. Man mano che avanzano nella foresta, il confine tra realtà e incubo si sfuoca, e dovranno fare i conti con le ombre che li inseguono e il male che si cela tra gli alberi. <a href="https://amzn.eu/d/8SG1HSr">Acquista ora</a></p>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="https://carnivalhalloween.com/2625-large_default/collana-girocollo-horror-di-spine.jpg" alt="Il Ciondolo Oscuro" class="book-image">
+                <div class="book-description">
+                    <h3>Il Ciondolo Oscuro</h3>
+                    <p>Una serie di omicidi rituali rivela l’esistenza di un ciondolo antico che pare controllare le azioni di chi lo possiede. Quando una giovane donna trova il ciondolo, scopre che il prezzo di possederlo potrebbe essere la propria anima. Costretta a confrontarsi con la propria oscurità interiore, dovrà combattere contro il proprio passato e una setta segreta che ha un obiettivo sinistro: risvegliare un’antica entità attraverso sacrifici umani. <a href="https://amzn.eu/d/8SG1HSr">Acquista ora</a></p>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="https://cdn.blogo.it/JImMGTNey6mv37XU2c-3wbCUTsY=/1280x720/smart/https://www.blogo.it/app/uploads/sites/3/2023/10/marvel-studios-presenta-licantropus-a-colori-trailer-italiano-del-film-horror-werewolf-by-night-in-color-su-disney-plus-dal-20-ottobre.png" alt="I Colori dell'Oblio" class="book-image">
+                <div class="book-description">
+                    <h3>I Colori dell'Oblio</h3>
+                    <p>Un pittore ritrova un antico diario che descrive la creazione di un quadro capace di evocare ricordi nascosti e desideri inespressi. Quando l’uomo comincia a dipingere, scopre che ogni pennellata risveglia un segreto, ma che la verità potrebbe essere troppo oscura per sopportarla. Dovrà fare i conti con le ombre del proprio passato e con una realtà che si sfalda intorno a lui, mentre i suoi colori diventano sempre più vividi e inquietanti. <a href="https://amzn.eu/d/8SG1HSr">Acquista ora</a></p>
+                </div>
+            </div>
+
+            <div class="book">
+                <img src="https://runlovers.it/wp-content/uploads/2013/02/respiro.jpg" alt="L'Ultimo Respiro" class="book-image">
+                <div class="book-description">
+                    <h3>L'Ultimo Respiro</h3>
+                    <p>In un ospedale abbandonato, una giovane infermiera scopre una serie di pazienti che non appaiono mai nei registri. Ciascuno di loro racconta una storia di vita impossibile, un passato che sembra intrecciarsi con il mistero dell’edificio stesso. Man mano che l’infermeria si svuota, l’unica possibilità di salvezza è svelare l’orribile verità che giace sotto la superficie, affrontando il proprio terrore più profondo. <a href="https://amzn.eu/d/8SG1HSr">Acquista ora</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="chi-sono" class="tab-content">
+            <h2>Chi sono</h2>
+            <div class="bio">
+                <p>Mi chiamo Samuele Deriu e sono uno scrittore di thriller e horror, nato e cresciuto in Italia, ma attualmente residente a Monaco di Baviera. La mia passione per la scrittura è nata sin da giovane, alimentata da una fervente curiosità per l'occulto e le storie di mistero.</p>
+                <p>Ho iniziato il mio percorso scrivendo racconti brevi e pubblicandoli online, ma è stato solo quando ho deciso di dedicarmi completamente alla narrativa che ho trovato la mia voce. I miei libri esplorano spesso temi di oscurità, segreti e paure sopite, uniti da una trama avvincente e ricca di colpi di scena.</p>
+                <p>Attraverso il mio sito web, voglio condividere non solo i miei lavori, ma anche il mio processo creativo e le storie dietro le quinte. Spero che la mia passione per il genere trovi risonanza in voi lettori e che vi immergiate con me nei mondi inquietanti che creo.</p>
+            </div>
+        </section>
+
+        <section id="contatti" class="tab-content">
+            <h2>Contatti</h2>
+            <div class="contact-form">
+                <h3>Scrivimi</h3>
+                <p>Hai domande o vuoi saperne di più sui miei libri? Contattami utilizzando il modulo sottostante!</p>
+                <form>
+                    <input type="text" placeholder="Nome" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Messaggio" rows="5" required></textarea>
+                    <button type="submit">Invia</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Richie Who. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        function showTab(tabId) {
+            // Nascondi tutte le schede
+            var tabs = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            // Mostra la scheda selezionata
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
