@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richie Who - Scrittore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #444;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.5rem;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: #555;
+            border-radius: 5px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .book {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .book img {
+            max-width: 150px;
+            border-radius: 5px;
+        }
+        .book-details {
+            flex: 1;
+            min-width: 200px;
+        }
+        .book-details h2 {
+            margin: 0;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 0.9rem;
+            }
+            .book img {
+                max-width: 100px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = {
+                home: `<h2>Benvenuto!</h2><p>Ciao! Sono Richie Who, scrittore appassionato. Scopri il mio ultimo libro e il mio percorso come autore.</p><div class="book"><img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro" style="max-width:200px; margin-top:10px;"></div>`,
+                books: `<h2>Il Mio Libro</h2><div class="book"><img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro"><div class="book-details"><h2>Titolo del Libro</h2><p>Una breve descrizione del libro. Scopri la trama, i personaggi e l'ispirazione dietro questa storia unica.</p><a href="https://www.amazon.it/dp/B0DPTY8QZD" target="_blank">Acquista su Amazon</a></div></div>`,
+                about: `<h2>Chi Sono</h2><p>Mi chiamo Richie Who, e sono un autore con una passione per raccontare storie. La scrittura è la mia forma di espressione e un modo per connettermi con il mondo.</p>`,
+                contact: `<h2>Contattami</h2><p>Vuoi metterti in contatto? Scrivimi per domande, collaborazioni o semplicemente per condividere il tuo pensiero sul mio libro!</p><p>Email: <a href="mailto:richie.who@example.com">richie.who@example.com</a></p>`
+            };
+
+            const contentDiv = document.querySelector('.container');
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('href').substring(1);
+                    contentDiv.innerHTML = sections[sectionId];
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Richie Who</h1>
+    <p>Scrittore e Autore</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#books">Libri</a>
+    <a href="#about">Chi Sono</a>
+    <a href="#contact">Contatti</a>
+</nav>
+
+<div class="container">
+    <h2>Benvenuto!</h2>
+    <p>Ciao! Sono Richie Who, scrittore appassionato. Scopri il mio ultimo libro e il mio percorso come autore.</p>
+    <div class="book">
+        <img src="https://m.media-amazon.com/images/I/71UIBC7ov-L._SL1400_.jpg" alt="Copertina del libro" style="max-width:200px; margin-top:10px;">
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Richie Who. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>
